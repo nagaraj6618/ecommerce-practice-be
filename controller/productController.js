@@ -2,6 +2,22 @@
 const productModel = require('../model/productModel');
 const mongoose = require('mongoose');
 
+
+//middleware
+// async function checkProductIDFormat (req,res,next){
+//    const id = req.params.id;
+   
+//    if(!mongoose.Types.ObjectId.isValid(id)){
+//       return res.status(401).json({
+//          message: "Invalid product ID format",
+//          success: false,
+//       });
+//    }
+//    next();
+
+// }
+
+
 async function getAllProducts(req, res) {
    try {
       // console.log()
@@ -32,12 +48,12 @@ async function getAllProducts(req, res) {
 
 async function getProductByID(req, res) {
    const id = req.params.id;
-   if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({
-         message: "Invalid product ID format",
-         success: false,
-      });
-   }
+   // if (!mongoose.Types.ObjectId.isValid(id)) {
+   //    return res.status(400).json({
+   //       message: "Invalid product ID format",
+   //       success: false,
+   //    });
+   // }
    try {
       const productData = await productModel.findById(id);
 
@@ -143,11 +159,22 @@ async function updateProductById(req, res) {
 };
 
 async function deleteProductById(req, res) {
+   const id = req.params.id;
+
    try {
-      
+      const deleteProduct = await productModel.findByIdAndDelete(id);
+      res.status(200).json({
+         message:"Product Deleted...",
+         success:true,
+         data:deleteProduct
+      });
+
    }
    catch (error) {
-
+      res.status(500).json({
+         message:error.message,
+         success:false,
+      })
    }
 };
 
@@ -166,7 +193,8 @@ module.exports = {
    addNewProduct,
    updateProductById,
    deleteProductById,
-   deleteEntireProduct
+   deleteEntireProduct,
+  
 };
 
 
