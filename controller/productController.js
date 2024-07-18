@@ -111,13 +111,27 @@ async function updateProductById(req, res) {
 
    try {
       const updateProductdata = req.body.product;
+      if(!updateProductdata){
+         return res.status(400).json({
+            message:"Provide details to update the product..",
+            success:false,
+         })
+      }
 
       const updated = await productModel.findByIdAndUpdate(id,updateProductdata);
+      if(!updated){
+         return res.status(404).json({
+            message:"Product Not Found..",
+            success:false,
+         });
+      };
+
+      const getProductData = await productModel.findById(updated._id);
 
       res.status(200).json({
          message:"Updated Successfully..",
          success:true,
-         data:updated
+         data:getProductData
       })
    }
    catch (error) {
@@ -130,7 +144,7 @@ async function updateProductById(req, res) {
 
 async function deleteProductById(req, res) {
    try {
-
+      
    }
    catch (error) {
 
