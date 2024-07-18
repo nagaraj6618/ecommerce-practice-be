@@ -165,7 +165,8 @@ async function deleteProductById(req, res) {
 async function deleteEntireProduct(req, res) {
    try {
       const deleteEntireData = await productModel.deleteMany();
-      if(!deleteEntireData){
+      console.log(deleteEntireData)
+      if(deleteEntireData.deletedCount<1){
          return res.status(404).json({
             message:"Products not available to delete..",
             success:false
