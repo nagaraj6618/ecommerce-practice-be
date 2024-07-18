@@ -6,7 +6,9 @@ const PORT = process.env.PORT;
 const DB_URL = process.env.MONGODB_URL;
 
 const app = express();
+// Route
 const productRoute = require('./route/productRoute');
+const authRoute = require('./route/authRoute');
 
 async function dbConnection() {
    if(!DB_URL){
@@ -40,6 +42,7 @@ app.get('/api/v1/',(req,res) => {
 })
 
 app.use('/api/v1/product',productRoute);
+app.use('/api/v1/auth',authRoute);
 
 app.listen(PORT,()=> console.log("Server running.."))
 
