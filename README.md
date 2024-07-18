@@ -58,6 +58,3 @@ This is the backend for an eCommerce project using Node.js, Express, and MongoDB
 
 - NAGARAJ S
 
-## License
-
-This project is licensed under the MIT License.
