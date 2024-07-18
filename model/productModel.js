@@ -4,11 +4,13 @@ const productSchema = new mongoose.Schema({
    name:{
       type:String,
       required:true,
+      trim:true,
    },
 
    description:{
       type:String,
       required:true,
+      trim:true
    },
    quantity:{
       type:Number,
@@ -21,6 +23,7 @@ const productSchema = new mongoose.Schema({
    category:{
       type:String,
       required:true,
+      
    }
 });
 
