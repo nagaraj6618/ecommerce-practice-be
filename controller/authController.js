@@ -151,11 +151,11 @@ async function register(req,res){
    
       await addUser.save();
       await sendOTP({id:addUser._id,email:addUser.email},res);
-      res.status(201).json({
-         message:"User account created..",
-         success:true,
-         data:addUser
-      })
+      // res.status(201).json({
+      //    message:"User account created..",
+      //    success:true,
+      //    data:addUser
+      // })
    }
    catch(error){
       res.status(500).json({
