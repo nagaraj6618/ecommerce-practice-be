@@ -140,7 +140,7 @@ async function deleteProductById(req, res) {
 
    try {
       const deleteProduct = await productModel.findByIdAndDelete(id);
-      
+
       if(!deleteProduct){
          return res.status(404).json({
             message:"Product Not Found...",
@@ -150,7 +150,7 @@ async function deleteProductById(req, res) {
       res.status(200).json({
          message:"Product Deleted...",
          success:true,
-         data:deleteProduct
+         
       });
 
    }
