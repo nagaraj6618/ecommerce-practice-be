@@ -64,7 +64,7 @@ async function getProductByID(req, res) {
 
 async function addNewProduct(req, res) {
    try {
-      const { name, description, quantity, price, category } = req.body;
+      const { name, description, quantity, price, category } = req.body.product;
 
       if (!name || !description || !quantity || !price || !category) {
          return res.status(400).json({
