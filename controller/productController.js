@@ -15,7 +15,7 @@ async function getAllProducts(req, res) {
          return res.status(404).json({
             message: "No products available..",
             success: false,
-         })
+         });
       }
       res.status(200).json({
          message: "Get All products..",
@@ -28,7 +28,7 @@ async function getAllProducts(req, res) {
       res.status(500).json({
          message: error.message,
          success: false,
-      })
+      });
    }
 }
 
@@ -44,20 +44,20 @@ async function getProductByID(req, res) {
          return res.status(404).json({
             message: "Product Not available",
             success: false,
-         })
+         });
       }
 
       res.status(200).json({
          message: "Retrived product using ID",
          data: productData,
          success: true
-      })
+      });
    }
    catch (error) {
       res.status(500).json({
          message: error.message,
          success: false,
-      })
+      });
    }
 
 }
@@ -85,15 +85,15 @@ async function addNewProduct(req, res) {
       await newProduct.save();
       res.status(201).json({
          message: "Product Added Successfully..",
-         succes: true,
+         success: true,
          data: newProduct
-      })
+      });
    }
    catch (error) {
       res.status(500).json({
          message: error.message,
          success: false,
-      })
+      });
    }
 };
 
@@ -108,7 +108,7 @@ async function updateProductById(req, res) {
          return res.status(400).json({
             message:"Provide details to update the product..",
             success:false,
-         })
+         });
       }
 
       const updated = await productModel.findByIdAndUpdate(id,updateProductdata);
@@ -125,13 +125,13 @@ async function updateProductById(req, res) {
          message:"Updated Successfully..",
          success:true,
          data:getProductData
-      })
+      });
    }
    catch (error) {
       res.status(500).json({
          message:error.message,
          success:false,
-      })
+      });
    }
 };
 
@@ -145,7 +145,7 @@ async function deleteProductById(req, res) {
          return res.status(404).json({
             message:"Product Not Found...",
             success:false,
-         })
+         });
       }
       res.status(200).json({
          message:"Product Deleted...",
@@ -158,16 +158,29 @@ async function deleteProductById(req, res) {
       res.status(500).json({
          message:error.message,
          success:false,
-      })
+      });
    }
 };
 
 async function deleteEntireProduct(req, res) {
    try {
-
+      const deleteEntireData = await productModel.deleteMany();
+      if(!deleteEntireData){
+         return res.status(404).json({
+            message:"Products not available to delete..",
+            success:false
+         });
+      }
+      res.status(200).json({
+         message:"All the products Deleted..",
+         success:true,
+      });
    }
    catch (error) {
-
+      res.status(500).json({
+         message:error.message,
+         success:false,
+      });
    }
 }
 
