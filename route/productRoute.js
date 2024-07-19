@@ -8,10 +8,11 @@ const {
    deleteProductById, 
 } = require('../controller/productController');
 const { validateIDFormat } = require('../middleware/validateID');
+const { verifyValidUser, verifyUser, verifyAdmin } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-router.get('/',getAllProducts);
+router.get('/',verifyValidUser,getAllProducts);
 router.post('/',addNewProduct);
 router.delete('/',deleteEntireProduct);
 
