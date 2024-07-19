@@ -5,10 +5,12 @@ const cors = require('cors');
 const PORT = process.env.PORT;
 const DB_URL = process.env.MONGODB_URL;
 
+
 const app = express();
 // Route
 const productRoute = require('./route/productRoute');
 const authRoute = require('./route/authRoute');
+const uploadRoute = require('./route/uploadRoute');
 
 async function dbConnection() {
    if(!DB_URL){
@@ -43,6 +45,8 @@ app.get('/api/v1/',(req,res) => {
 
 app.use('/api/v1/product',productRoute);
 app.use('/api/v1/auth',authRoute);
+app.use('/api/v1/upload',uploadRoute);
+
 
 app.listen(PORT,()=> console.log("Server running.."))
 
