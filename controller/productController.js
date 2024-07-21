@@ -8,7 +8,8 @@ const productModel = require('../model/productModel');
 
 async function getAllProducts(req, res) {
    try {
-      const {category} = req.query;
+      let {category} = req.query;
+      category = category.trim().toLowerCase();
       // console.log(category)
       
 
@@ -23,7 +24,7 @@ async function getAllProducts(req, res) {
       }
       if(category){
 
-         const productsBasedOnCategory = allProductData.filter((data,index) => data.category.toLowerCase() === category.toLowerCase());
+         const productsBasedOnCategory = allProductData.filter((data,index) => data.category.toLowerCase() === category);
          if(productsBasedOnCategory.length<=0) {
             return res.status(404).json({
                message:`No products available in the ${category} category..`,
