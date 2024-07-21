@@ -8,15 +8,37 @@ const productModel = require('../model/productModel');
 
 async function getAllProducts(req, res) {
    try {
-     
+      const {category} = req.query;
+      // console.log(category)
+      
 
       const allProductData = await productModel.find();
+
+
       if (allProductData.length <= 0) {
          return res.status(404).json({
             message: "No products available..",
             success: false,
          });
       }
+      if(category){
+
+         const productsBasedOnCategory = allProductData.filter((data,index) => data.category.toLowerCase() === category.toLowerCase());
+         if(productsBasedOnCategory.length<=0) {
+            return res.status(404).json({
+               message:`No products available in the ${category} category..`,
+               success:false,
+            });
+         }
+
+         return res.status(200).json({
+            message:`Retrived all the products based on ${category} category`,
+            success:true,
+            data:productsBasedOnCategory,
+         });
+
+      };
+
       res.status(200).json({
          message: "Get All products..",
          success: true,
