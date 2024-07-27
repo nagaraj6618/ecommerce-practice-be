@@ -120,10 +120,12 @@ async function register(req,res){
    try{
 
       const {userName,name,email,password} = req.body.user;
+      const user = req.body.user;
       if(!userName || !name|| !email || !password){
          return res.status(400).json({
             message:"Provide all the details..",
             success:false,
+            data:{userName,name,email,password,user}
          })
       };
       const isExistingUser = await userModel.findOne({
