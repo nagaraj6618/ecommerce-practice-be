@@ -1,5 +1,6 @@
 const cloudinary = require('cloudinary');
 const path = require('path');
+const uuid = require('uuid');
 const DataUriParser = require('datauri/parser');
 
 const parser = new DataUriParser();
@@ -26,9 +27,9 @@ async function uploadImage(req,res){
       const file64 = formatBufferTo64(req.file);
   
   
-      const originalName = path.parse(req.file.originalname).name;
+      const originalName = `${uuid.v4()}-${Date.now()}`;
     
-  
+      console.log(originalName);
       const cldRes = await cloudinary.v2.uploader.unsigned_upload(file64.content, 'hlwb0d2s', {
         public_id: originalName,
         folder: 'Image',
