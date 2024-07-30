@@ -45,7 +45,7 @@ async function uploadImage(req,res){
       res.status(500).json({
         message: "Upload was not successful.",
         success: false,
-        error: error.message
+        error: error
       });
     }
 }
