@@ -218,7 +218,8 @@ async function login(req,res){
          success:true,
          data:{
             token:token,
-            userName : userExist.userName
+            userName : userExist.userName,
+            role : userExist.role,
          }
       })
    }
