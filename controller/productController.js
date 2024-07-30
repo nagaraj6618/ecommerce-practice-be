@@ -86,9 +86,10 @@ async function getProductByID(req, res) {
 
 async function addNewProduct(req, res) {
    try {
-      const { name, description, quantity, price, category } = req.body.product;
+      // console.log(req.file);
+      const { name, description, quantity, price, category,imageName } = req.body.product;
 
-      if (!name || !description || !quantity || !price || !category) {
+      if (!name || !description || !quantity || !price || !category ) {
          return res.status(400).json({
             message: "Provide all the details",
             success: false,
@@ -101,9 +102,10 @@ async function addNewProduct(req, res) {
          quantity: Number(quantity.trim()),
          price: Number(price.trim()),
          category: category,
+         imageName:imageName
       });
 
-      // console.log(newProduct);
+      console.log(newProduct);
       await newProduct.save();
       res.status(201).json({
          message: "Product Added Successfully..",

@@ -18,6 +18,7 @@ const formatBufferTo64 = file => {
  
 async function uploadImage(req,res){
    try {
+    console.log(req.file);
       if (!req.file) {
         throw new Error('No file uploaded.');
       }

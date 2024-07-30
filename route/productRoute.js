@@ -8,6 +8,7 @@ const {
    deleteProductById, 
 } = require('../controller/productController');
 const { validateIDFormat } = require('../middleware/validateID');
+// const multerUpload = require('../middleware/multer');
 // const { verifyValidUser, verifyUser, verifyAdmin } = require('../middleware/authMiddleware');
 
 const router = express.Router();
