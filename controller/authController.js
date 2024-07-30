@@ -216,7 +216,10 @@ async function login(req,res){
       res.status(200).json({
          message:"Login Successfull..",
          success:true,
-         data:{token}
+         data:{
+            token:token,
+            userName : userExist.userName
+         }
       })
    }
    catch(error){
