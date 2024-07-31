@@ -1,5 +1,6 @@
 const { verifyToken } = require("../middleware/authMiddleware");
 const CartModel = require("../model/CartModel");
+const productModel = require("../model/productModel");
 
 async function getAllCart(req,res) {
    try{
@@ -44,6 +45,43 @@ async function addProductToCart(req,res) {
             success:false,
          })
       }
+
+      const isProductExist = await productModel.find(
+         {_id:productId}
+      );
+
+      if(isProductExist.length<=0){
+         return res.status(404).json({
+            message:"Product not found.",
+            status:false
+         });
+      };
+
+
+      const isAlreadyExistProduct = await CartModel.find({
+         userId:user.id,productId:productId
+      })
+      // console.log(isAlreadyExistProduct)
+      if(isAlreadyExistProduct.length>0){
+
+         const existProduct = isAlreadyExistProduct[0]
+         const existProductId = existProduct._id;
+         // console.log(existProductId);
+         await CartModel.findByIdAndUpdate(existProductId,{
+            count:existProduct.count+1
+         })
+         
+         return res.status(200).json({
+            message:"Product count updated",
+            success:true
+         });
+      }
+
+      
+      console.log(isProductExist);
+
+
+
       const newCartProduct = await CartModel({
          userId:user.id,
          productId:productId,
@@ -54,7 +92,6 @@ async function addProductToCart(req,res) {
       res.status(201).json({
          message:"Added product to the cart..",
          success:true,
-         data:newCartProduct
       });
 
    }
@@ -66,4 +103,23 @@ async function addProductToCart(req,res) {
    }
 }
 
-module.exports = {getAllCart,addProductToCart};
+async function getCartProductById (req,res) {
+   try{
+      const {id} = req.params;
+      const product = await CartModel.findById(id);
+      res.status(200).json({
+         message:"Retrived product data by ID",
+         success:true,
+         data:product
+      });
+
+   }
+   catch(error){
+      res.status(500).json({
+         message:error.message,
+         success:false,
+      })
+   }
+}
+
+module.exports = {getAllCart,addProductToCart,getCartProductById};
