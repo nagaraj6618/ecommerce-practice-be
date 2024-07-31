@@ -11,6 +11,7 @@ const app = express();
 const productRoute = require('./route/productRoute');
 const authRoute = require('./route/authRoute');
 const uploadRoute = require('./route/uploadRoute');
+const cartRoute = require('./route/cartRoute');
 
 async function dbConnection() {
    if(!DB_URL){
@@ -46,6 +47,7 @@ app.get('/api/v1/',(req,res) => {
 app.use('/api/v1/product',productRoute);
 app.use('/api/v1/auth',authRoute);
 app.use('/api/v1/upload',uploadRoute);
+app.use('/api/v1/cart',cartRoute);
 
 
 app.listen(PORT,()=> console.log("Server running.."))
