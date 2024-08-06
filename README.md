@@ -3,42 +3,42 @@
 This is the backend for an eCommerce project using Node.js, Express, and MongoDB.
 
 ## API 
-- **Link:** `https://ecommerce-practice-chi.vercel.app`
+- **Link:** `https://ecommerce-practice-chi.vercel.app/api/v1`
 
 ## API Endpoints
 
 ### 1. API Status
-- **Endpoint:** `/api/v1`
+- **Endpoint:** `/`
 - **Description:** Check if the API is working.
 
 ### 2. Product Management
 
 #### Get All Products
-- **Endpoint:** `GET /api/v1/product`
+- **Endpoint:** `GET /product`
 - **Description:** Retrieve a list of all products.
 
 #### Add New Product
-- **Endpoint:** `POST /api/v1/product`
+- **Endpoint:** `POST /product`
 - **Description:** Add a new product.
 - **Request Body:** JSON object representing the new product.
 
 #### Delete All Products
-- **Endpoint:** `DELETE /api/v1/product`
+- **Endpoint:** `DELETE /product`
 - **Description:** Delete all products from the database.
 
 ### 3. Product Operations by ID
 
 #### Get Product by ID
-- **Endpoint:** `GET /api/v1/product/:id`
+- **Endpoint:** `GET /product/:id`
 - **Description:** Retrieve a product by its ID.
 
 #### Update Product by ID
-- **Endpoint:** `PUT /api/v1/product/:id`
+- **Endpoint:** `PUT /product/:id`
 - **Description:** Update a product by its ID.
 - **Request Body:** JSON object representing the updated product details.
 
 #### Delete Product by ID
-- **Endpoint:** `DELETE /api/v1/product/:id`
+- **Endpoint:** `DELETE /product/:id`
 - **Description:** Delete a product by its ID.
 
 ## Setup
