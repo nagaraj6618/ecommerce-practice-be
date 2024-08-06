@@ -41,6 +41,38 @@ This is the backend for an eCommerce project using Node.js, Express, and MongoDB
 - **Endpoint:** `DELETE /product/:id`
 - **Description:** Delete a product by its ID.
 
+### 4. User Authentication
+
+#### Sign In
+- **Endpoint:** `POST /auth/signin`
+- **Description:** User login.
+- **Request Body:** JSON object with email and password.
+
+#### Sign Up
+- **Endpoint:** `POST /auth/signup`
+- **Description:** User registration.
+- **Request Body:** JSON object with user details (name, email, password, etc.).
+
+#### Verify Account
+- **Endpoint:** `POST /auth/otp/:id`
+- **Description:** Verify user account using OTP.
+- **Request Body:** JSON object with OTP.
+
+### 5. Cart Management
+
+#### Get All Carts
+- **Endpoint:** `GET /cart`
+- **Description:** Retrieve all carts.
+
+#### Add to Cart
+- **Endpoint:** `POST /cart`
+- **Description:** Add a new cart.
+- **Request Body:** JSON object representing the new cart.
+
+#### Get Cart by ID
+- **Endpoint:** `GET /cart/:id`
+- **Description:** Retrieve a cart by its ID.
+
 ## Setup
 
 1. Clone the repository.
@@ -57,4 +89,3 @@ This is the backend for an eCommerce project using Node.js, Express, and MongoDB
 ## Author
 
 - NAGARAJ S
-
